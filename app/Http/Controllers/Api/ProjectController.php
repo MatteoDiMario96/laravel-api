@@ -13,6 +13,7 @@ class ProjectController extends Controller
     public function index(){
         //RITORNA UN JSON CON X COSE
         $projects = Project::paginate(3);
+        $projects->loadMissing("type", "technologies");
         return response()->json(
             [
                 "success" => true,
